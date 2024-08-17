@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca de Produtos</title>
     <style>
         body {
@@ -13,6 +15,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .container {
@@ -20,28 +23,38 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-            max-width: 600px; /* Limita a largura máxima da caixa de pesquisa */
-            position: relative; /* Necessário para o posicionamento absoluto do botão */
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            margin: 0 auto; /* Centraliza o container */
+            max-width: 600px; /* Limita a largura máxima do container */
         }
 
         input, button {
-            padding: 10px 20px;
+            padding: 10px;
             margin: 5px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: calc(50% - 22px); /* Ajusta a largura dos inputs para serem responsivos */
         }
 
         button {
             background-color: #ff69b4; /* Rosa pink */
             color: #fff;
+            width: calc(50% - 22px); /* Ajusta a largura do botão para ser responsivo */
         }
 
         .btn-return {
             background-color: #ff69b4; /* Rosa pink */
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 10px;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
@@ -58,13 +71,14 @@
         }
 
         h1 {
-            margin-top: 50px; /* Adiciona uma margem acima do título para evitar sobreposição com o botão */
+            margin-top: 70px; /* Ajustado para evitar sobreposição com o botão */
+            font-size: 1.5em; /* Ajuste de tamanho para responsividade */
         }
 
         ul {
             list-style-type: none;
             padding: 0;
-            text-align: left; /* Alinha o texto dos itens à esquerda */
+            text-align: left;
         }
 
         li {
@@ -73,6 +87,9 @@
 
         .pagination {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Espaço entre os botões de paginação */
         }
 
         .pagination button {
@@ -80,14 +97,41 @@
             color: #fff;
             border: none;
             padding: 10px;
-            margin: 0 5px;
+            margin: 0;
             border-radius: 5px;
             cursor: pointer;
+            flex: 1; /* Permite que os botões ocupem a largura disponível */
         }
 
         .pagination button:disabled {
             background-color: #aaa;
             cursor: not-allowed;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            input, button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .btn-return {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 1.2em;
+            }
+
+            .pagination {
+                flex-direction: column; /* Empilha os botões verticalmente em dispositivos móveis */
+                gap: 10px; /* Espaço entre os botões na vertical */
+            }
+
+            .pagination button {
+                width: 100%; /* Largura total para botões em dispositivos móveis */
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -237,7 +281,7 @@
 
             resultados = produtos.filter(produto => {
                 return produto.valor >= valorMinimo && produto.valor <= valorMaximo;
-            }).sort((a, b) => a.valor - b.valor); // Ordena os resultados em ordem crescente
+            }).sort((a, b) => a.valor - b.valor);
 
             paginaAtual = 1;
             atualizarResultados();
@@ -245,7 +289,6 @@
 
         buscarButton.addEventListener('click', buscar);
 
-        // Aciona a busca ao pressionar Enter
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 buscar();
