@@ -21,6 +21,7 @@
             border-radius: 10px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
             max-width: 600px; /* Limita a largura máxima da caixa de pesquisa */
+            position: relative; /* Necessário para o posicionamento absoluto do botão */
         }
 
         input, button {
@@ -34,6 +35,30 @@
         button {
             background-color: #ff69b4; /* Rosa pink */
             color: #fff;
+        }
+
+        .btn-return {
+            background-color: #ff69b4; /* Rosa pink */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .btn-return i {
+            font-size: 20px;
+        }
+
+        h1 {
+            margin-top: 50px; /* Adiciona uma margem acima do título para evitar sobreposição com o botão */
         }
 
         ul {
@@ -65,9 +90,13 @@
             cursor: not-allowed;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
+        <button class="btn-return" onclick="window.location.href='pagina-orcamento.html';">
+            <i class="fas fa-home"></i> Retornar ao Orçamento
+        </button>
         <h1>Busca de Produtos</h1>
         <input type="number" id="valorMinimo" placeholder="Valor mínimo">
         <input type="number" id="valorMaximo" placeholder="Valor máximo">
@@ -127,47 +156,6 @@
             { nome: 'Fiery phoenix', valor: 6.00 },
             { nome: 'Fish tank', valor: 2.50 },
             { nome: 'Frost Engine', valor: 3.50 },
-            { nome: 'Grandfather Clock', valor: 5.00 },
-            { nome: 'Haunted Circus Tent', valor: 0.99 },
-            { nome: 'Icethrust', valor: 3.50 },
-            { nome: 'Ice Sleigh', valor: 2.00 },
-            { nome: 'JellyBean', valor: 3.99 },
-            { nome: 'Jingle bells', valor: 1.50 },
-            { nome: 'Krampus', valor: 2.00 },
-            { nome: 'Lil tree', valor: 3.00 },
-            { nome: 'Lunar Witch Broom', valor: 0.85 },
-            { nome: 'Lovesick', valor: 18.00 },
-            { nome: 'Marching Drums', valor: 5.00 },
-            { nome: 'Marine', valor: 15.00 },
-            { nome: 'Merry Music Box', valor: 15.90 },
-            { nome: 'Midnight Light', valor: 4.00 },
-            { nome: 'Mothership', valor: 6.50 },
-            { nome: 'Mystical Trident', valor: 3.50 },
-            { nome: 'Owl tree', valor: 1.99 },
-            { nome: 'Party Ballons', valor: 48.00 },
-            { nome: 'Phantom Light', valor: 13.00 },
-            { nome: 'Pinata', valor: 12.99 },
-            { nome: 'Pumpkin Slice', valor: 30.00 },
-            { nome: 'Quebra-Nozes Azul (Nutcracker)', valor: 2.50 },
-            { nome: 'Quebra-Nozes Vermelho (Nutcracker)', valor: 2.50 },
-            { nome: 'Santa Boot', valor: 4.00 },
-            { nome: 'Santa Chimney', valor: 2.00 },
-            { nome: 'Santa Sleigh', valor: 5.50 },
-            { nome: 'Snow Glob', valor: 2.50 },
-            { nome: 'Solar Witch Broom', valor: 0.85 },
-            { nome: 'Spooky Brew', valor: 44.00 },
-            { nome: 'Stack of Presents', valor: 1.00 },
-            { nome: 'Toy Box', valor: 4.50 },
-            { nome: 'Toy Elf', valor: 3.00 },
-            { nome: 'Toy Santa', valor: 3.00 },
-            { nome: 'Sweet Train', valor: 0.90 },
-            { nome: 'Festive Train', valor: 0.90 },
-            { nome: 'Winter Train', valor: 0.90 },
-            { nome: 'Winter Breeze', valor: 1.00 },
-            { nome: 'Tombstone Bash', valor: 4.90 },
-            { nome: 'Vip Ban', valor: 0.90 },
-            { nome: 'Warlock Hunter', valor: 4.50 },
-            { nome: 'Witch Hunter', valor: 6.00 },
             { nome: 'Yuletide', valor: 9.99 }
         ];
 
