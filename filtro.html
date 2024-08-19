@@ -6,8 +6,7 @@
     <title>Lojinha Naty Kitty Store - Busca de Produtos</title>
     <style>
         /* Reset de estilos para melhorar a consistência entre navegadores */
-
- body {
+        body {
             background-color: #3e3e3e;
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -15,11 +14,11 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            justify-content: center; /* Alinha o conteúdo verticalmente no centro */
+            justify-content: center;
         }
 
         #logo {
-            margin: 10px auto; /* Reduz a margem superior para aproximar o logo do contêiner */
+            margin: 10px auto;
             display: block;
             width: 150px;
         }
@@ -62,7 +61,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            width: 60%; /* Ajuste para a largura do botão de busca */
+            width: 60%;
             margin: 10px auto 0;
             display: block;
         }
@@ -85,13 +84,13 @@
         }
 
         .pagination button {
-            width: 45%; /* Ajuste para diminuir o tamanho dos botões de paginação */
+            width: 45%;
         }
 
         footer {
             background-color: #3e3e3e;
             color: #fff;
-            padding: 10px; /* Reduzi o padding do footer */
+            padding: 10px;
             text-align: center;
             margin-top: auto;
         }
@@ -144,7 +143,7 @@
     </footer>
 
     <script>
-        const produtos = [
+       const produtos = [
                        { nome: '1 Billion', valor: 1.49 },
     { nome: '2ND Anniversary (Aniversário)', valor: 5.99 },
     { nome: '3RD Anniversary (Aniversário)', valor: 1.99 },
@@ -237,30 +236,34 @@
 
         let paginaAtual = 1;
         const itensPorPagina = 5;
+        let resultadosFiltrados = [];
 
         function buscar() {
+            // Reseta a página atual para 1 sempre que a busca for realizada
+            paginaAtual = 1;
+
             const valorMinimo = parseFloat(document.getElementById('valor-minimo').value) || 0;
             const valorMaximo = parseFloat(document.getElementById('valor-maximo').value) || Infinity;
 
-            const resultadosFiltrados = produtos
+            resultadosFiltrados = produtos
                 .filter(produto => produto.valor >= valorMinimo && produto.valor <= valorMaximo)
                 .sort((a, b) => a.valor - b.valor);
 
-            mostrarResultados(resultadosFiltrados);
+            mostrarResultados();
         }
 
-        function mostrarResultados(resultados) {
+        function mostrarResultados() {
             const resultadoDiv = document.getElementById('resultados');
             resultadoDiv.innerHTML = '';
 
-            if (resultados.length === 0) {
+            if (resultadosFiltrados.length === 0) {
                 resultadoDiv.innerHTML = '<p>Nenhum item encontrado dentro dos parâmetros de mínimo e máximo.</p>';
                 return;
             }
 
             const inicio = (paginaAtual - 1) * itensPorPagina;
             const fim = inicio + itensPorPagina;
-            const resultadosPagina = resultados.slice(inicio, fim);
+            const resultadosPagina = resultadosFiltrados.slice(inicio, fim);
 
             resultadosPagina.forEach(produto => {
                 const p = document.createElement('p');
@@ -269,20 +272,20 @@
             });
 
             document.getElementById('prevPageButton').disabled = paginaAtual === 1;
-            document.getElementById('nextPageButton').disabled = fim >= resultados.length;
+            document.getElementById('nextPageButton').disabled = fim >= resultadosFiltrados.length;
         }
 
         document.getElementById('prevPageButton').addEventListener('click', () => {
             if (paginaAtual > 1) {
                 paginaAtual--;
-                buscar();
+                mostrarResultados();
             }
         });
 
         document.getElementById('nextPageButton').addEventListener('click', () => {
-            if (paginaAtual * itensPorPagina < produtos.length) {
+            if (paginaAtual * itensPorPagina < resultadosFiltrados.length) {
                 paginaAtual++;
-                buscar();
+                mostrarResultados();
             }
         });
     </script>
