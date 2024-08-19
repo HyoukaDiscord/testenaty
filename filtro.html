@@ -1,169 +1,128 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca de Produtos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
+            background-color: #3e3e3e;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
         .container {
-            background-color: #444;
+            background-color: #5c5c5c;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-            max-width: 100%;
-            width: 100%;
-            box-sizing: border-box;
-            position: relative;
-            margin: 0 auto; /* Centraliza o container */
-            max-width: 600px; /* Limita a largura máxima do container */
+            text-align: center;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input {
-            width: calc(50% - 22px); /* Ajusta a largura dos inputs para serem responsivos */
-        }
-
-        button {
-            background-color: #ff69b4; /* Rosa pink */
-            color: #fff;
-            width: calc(50% - 22px); /* Ajusta a largura do botão para ser responsivo */
-        }
-
-        .btn-return {
-            background-color: #ff69b4; /* Rosa pink */
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        .btn-return i {
-            font-size: 20px;
+                #logo {
+            margin-top: 10px;
+            width: 150px;
         }
 
         h1 {
-            margin-top: 70px; /* Ajustado para evitar sobreposição com o botão */
-            font-size: 1.5em; /* Ajuste de tamanho para responsividade */
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e60073;
+        }
+
+        .resultados {
             text-align: left;
-        }
-
-        li {
-            padding: 5px 0;
+            margin-top: 20px;
+            color: white;
+            font-size: 16px;
         }
 
         .pagination {
+            display: flex;
+            justify-content: space-between;
             margin-top: 20px;
+        }
+
+        footer {
+            background-color: #181818;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer div {
             display: flex;
             justify-content: center;
-            gap: 10px; /* Espaço entre os botões de paginação */
+            gap: 20px;
+            align-items: center;
         }
 
-        .pagination button {
-            background-color: #ff69b4; /* Rosa pink */
-            color: #fff;
-            border: none;
-            padding: 10px;
-            margin: 0;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1; /* Permite que os botões ocupem a largura disponível */
-        }
-
-        .pagination button:disabled {
-            background-color: #aaa;
-            cursor: not-allowed;
-        }
-
-        /* Responsividade */
-        @media (max-width: 600px) {
-            input, button {
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .btn-return {
-                position: static;
-                margin-bottom: 20px;
-            }
-
-            h1 {
-                font-size: 1.2em;
-            }
-
-            .pagination {
-                flex-direction: column; /* Empilha os botões verticalmente em dispositivos móveis */
-                gap: 10px; /* Espaço entre os botões na vertical */
-            }
-
-            .pagination button {
-                width: 100%; /* Largura total para botões em dispositivos móveis */
-            }
+        footer img {
+            width: 30px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script>
-        document.addEventListener('keydown', function (e) {
-            if (e.ctrlKey && (e.key === 'u' || e.key === 's') || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                e.preventDefault();
-            }
-        });
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
 </head>
 <body>
     <div class="container">
-        <button class="btn-return" onclick="window.location.href='index.html';">
-            <i class="fas fa-home"></i> Retornar ao Orçamento
-        </button>
+        <button onclick="window.location.href='index.html'">Retornar ao Orçamento</button>
         <h1>Busca de Produtos</h1>
-        <input type="number" id="valorMinimo" placeholder="Valor mínimo">
-        <input type="number" id="valorMaximo" placeholder="Valor máximo">
-        <button id="buscar">Buscar</button>
-        <ul id="resultados"></ul>
+        <input type="number" id="valor-minimo" placeholder="Valor mínimo">
+        <input type="number" id="valor-maximo" placeholder="Valor máximo">
+        <button onclick="buscar()">Buscar</button>
+
+        <div class="resultados" id="resultados"></div>
+
         <div class="pagination">
-            <button id="prevPage" disabled>Anterior</button>
-            <button id="nextPage" disabled>Próximo</button>
+            <button id="prevPageButton">Anterior</button>
+            <button id="nextPageButton">Próximo</button>
         </div>
     </div>
 
+    <footer>
+        <div>
+            <a href="https://www.instagram.com/naty_kittystore/" target="_blank">
+                <img src="assets/logo-instagram.png" alt="Instagram da Lojinha Naty Kitty Store">
+            </a>
+            <a href="https://discord.com/invite/N3Xa23Qnmc" target="_blank">
+                <img src="assets/logo-discord.png" alt="Logo Discord da Lojinha Naty Kitty Store">
+            </a>
+            <a href="https://www.youtube.com/@naty_kittystore" target="_blank">
+                <img src="assets/logo-youtube.png" alt="YouTube da Lojinha Naty Kitty Store">
+            </a>
+            <a href="https://www.tiktok.com/@naty_kittystore" target="_blank">
+                <img src="assets/logo-tiktok.png" alt="TikTok da Lojinha Naty Kitty Store">
+            </a>
+        </div>
+    </footer>
+
     <script>
-        const produtos = [
+ const produtos = [
     { nome: '1 Billion', valor: 1.49 },
     { nome: '2ND Anniversary (Aniversário)', valor: 5.99 },
     { nome: '3RD Anniversary (Aniversário)', valor: 1.99 },
@@ -190,9 +149,9 @@
     { nome: 'Cocoa Machine', valor: 3.00 },
     { nome: 'Cozy Cocoa', valor: 1.49 },
     { nome: 'Casa de Gengibre (Gingerbread House)', valor: 1.00 },
-    { nome: 'Cesta de Morango', valor: 17.50 },
-    { nome: 'Cesta de Blueberry', valor: 16.00 },
-    { nome: 'Cesta de Limão', valor: 15.00 },
+    { nome: 'Cesta de Morango', valor: 16.00 },
+    { nome: 'Cesta de Blueberry', valor: 15.00 },
+    { nome: 'Cesta de Limão', valor: 14.50 },
     { nome: 'Caixão (Coffin)', valor: 4.00 },
     { nome: 'Chromatic Phoenix', valor: 1.50 },
     { nome: 'Chapéu Sortudo (Lucky Top Hat)', valor: 3.50 },
@@ -227,7 +186,7 @@
     { nome: 'Mothership', valor: 6.50 },
     { nome: 'Mystical Trident', valor: 3.50 },
     { nome: 'Owl tree', valor: 1.99 },
-    { nome: 'Party Ballons', valor: 48.00 },
+    { nome: 'Party Ballons', valor: 42.50 },
     { nome: 'Phantom Light', valor: 13.00 },
     { nome: 'Pinata', valor: 12.99 },
     { nome: 'Pumpkin Slice', valor: 30.00 },
@@ -240,7 +199,7 @@
     { nome: 'Solar Witch Broom', valor: 0.85 },
     { nome: 'Spooky Brew', valor: 44.00 },
     { nome: 'Stack of Presents', valor: 1.00 },
-    { nome: 'Toy Box', valor: 4.50 },
+    { nome: 'Toy Box', valor: 3.50 },
     { nome: 'Toy Elf', valor: 3.00 },
     { nome: 'Toy Santa', valor: 3.00 },
     { nome: 'Sweet Train', valor: 0.90 },
@@ -250,75 +209,60 @@
     { nome: 'Tombstone Bash', valor: 4.90 },
     { nome: 'Vip Ban', valor: 0.90 },
     { nome: 'Warlock Hunter', valor: 4.50 },
-    { nome: 'Witch Hunter', valor: 6.00 },
+    { nome: 'Witch Hunter', valor: 5.00 },
     { nome: 'Yuletide', valor: 9.99 }
 ];
 
-        const valorMinimoInput = document.getElementById('valorMinimo');
-        const valorMaximoInput = document.getElementById('valorMaximo');
-        const buscarButton = document.getElementById('buscar');
-        const resultadosUl = document.getElementById('resultados');
-        const prevPageButton = document.getElementById('prevPage');
-        const nextPageButton = document.getElementById('nextPage');
-
-        let resultados = [];
         let paginaAtual = 1;
-        const itensPorPagina = 10;
-
-        function atualizarResultados() {
-            resultadosUl.innerHTML = '';
-            const inicio = (paginaAtual - 1) * itensPorPagina;
-            const fim = Math.min(inicio + itensPorPagina, resultados.length);
-            const itensPagina = resultados.slice(inicio, fim);
-
-            if (itensPagina.length === 0) {
-                resultadosUl.innerHTML = '<li>Nenhum produto encontrado.</li>';
-            } else {
-                itensPagina.forEach(produto => {
-                    const li = document.createElement('li');
-                    li.textContent = `${produto.nome} - R$ ${produto.valor.toFixed(2)}`;
-                    resultadosUl.appendChild(li);
-                });
-            }
-
-            prevPageButton.disabled = paginaAtual === 1;
-            nextPageButton.disabled = paginaAtual * itensPorPagina >= resultados.length;
-        }
+        const itensPorPagina = 5;
 
         function buscar() {
-            let valorMinimo = parseFloat(valorMinimoInput.value) || 0;
-            let valorMaximo = parseFloat(valorMaximoInput.value) || Math.max(...produtos.map(produto => produto.valor));
+            const valorMinimo = parseFloat(document.getElementById('valor-minimo').value) || 0;
+            const valorMaximo = parseFloat(document.getElementById('valor-maximo').value) || Infinity;
 
-            resultados = produtos.filter(produto => {
-                return produto.valor >= valorMinimo && produto.valor <= valorMaximo;
-            }).sort((a, b) => a.valor - b.valor);
+            const resultadosFiltrados = produtos
+                .filter(produto => produto.valor >= valorMinimo && produto.valor <= valorMaximo)
+                .sort((a, b) => a.valor - b.valor);
 
-            paginaAtual = 1;
-            atualizarResultados();
+            mostrarResultados(resultadosFiltrados);
         }
 
-        buscarButton.addEventListener('click', buscar);
+        function mostrarResultados(resultados) {
+            const resultadoDiv = document.getElementById('resultados');
+            resultadoDiv.innerHTML = '';
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
+            if (resultados.length === 0) {
+                resultadoDiv.innerHTML = '<p>Nenhum item encontrado dentro dos parâmetros de mínimo e máximo.</p>';
+                return;
+            }
+
+            const inicio = (paginaAtual - 1) * itensPorPagina;
+            const fim = inicio + itensPorPagina;
+            const resultadosPagina = resultados.slice(inicio, fim);
+
+            resultadosPagina.forEach(produto => {
+                const p = document.createElement('p');
+                p.textContent = `${produto.nome} - R$ ${produto.valor.toFixed(2).replace('.', ',')}`;
+                resultadoDiv.appendChild(p);
+            });
+
+            document.getElementById('prevPageButton').disabled = paginaAtual === 1;
+            document.getElementById('nextPageButton').disabled = fim >= resultados.length;
+        }
+
+        document.getElementById('prevPageButton').addEventListener('click', () => {
+            if (paginaAtual > 1) {
+                paginaAtual--;
                 buscar();
             }
         });
 
-        prevPageButton.addEventListener('click', () => {
-            if (paginaAtual > 1) {
-                paginaAtual--;
-                atualizarResultados();
-            }
-        });
-
-        nextPageButton.addEventListener('click', () => {
-            if (paginaAtual * itensPorPagina < resultados.length) {
+        document.getElementById('nextPageButton').addEventListener('click', () => {
+            if (paginaAtual * itensPorPagina < produtos.length) {
                 paginaAtual++;
-                atualizarResultados();
+                buscar();
             }
         });
     </script>
 </body>
-
 </html>
