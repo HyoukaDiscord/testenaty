@@ -101,36 +101,94 @@
         }
         .container {
             flex: 1 0 auto;
-            padding-bottom: 80px;
-        }
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--bg-color);
-            padding: 10px 0;
-            z-index: 1000;
-        }
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            margin: 0 10px;
+            padding-bottom: 20px;
         }
         .button-group {
             display: flex;
             gap: 10px;
         }
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1200;
+            top: 0;
+            left: 0;
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            color: var(--primary-color);
+        }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1100;
+        }
+        .openbtn:hover {
+            background-color: var(--primary-color);
+        }
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body class="dark-mode">
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" id="darkModeToggle">
+            <i class="fas fa-adjust"></i>
+            <span class="ms-2">Modo Claro</span>
+        </a>
+        <a href="https://www.instagram.com/naty_kittystore/" target="_blank">
+            <img src="assets/logo-instagram.png" alt="Instagram" class="social-icon" onerror="this.src='https://via.placeholder.com/35x35?text=IG'">
+            Instagram
+        </a>
+        <a href="https://discord.com/invite/N3Xa23Qnmc" target="_blank">
+            <img src="assets/logo-discord.png" alt="Discord" class="social-icon" onerror="this.src='https://via.placeholder.com/35x35?text=DC'">
+            Discord
+        </a>
+        <a href="https://www.youtube.com/@naty_kittystore" target="_blank">
+            <img src="assets/logo-youtube.png" alt="YouTube" class="social-icon" onerror="this.src='https://via.placeholder.com/35x35?text=YT'">
+            YouTube
+        </a>
+        <a href="https://www.tiktok.com/@naty_kittystore" target="_blank">
+            <img src="assets/logo-tiktok.png" alt="TikTok" class="social-icon" onerror="this.src='https://via.placeholder.com/35x35?text=TT'">
+            TikTok
+        </a>
+    </div>
+
+    <button class="openbtn" onclick="openNav()">&#9776;</button>
+
     <div class="container">
         <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.src='https://via.placeholder.com/200x100?text=Logo'">
-        
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" id="darkModeToggle">
-            <label class="form-check-label" for="darkModeToggle">Modo Claro</label>
-        </div>
 
         <h3>Busque seu set FTF:</h3>
         <div class="mb-3">
@@ -193,29 +251,22 @@
 
     <!-- Modal Personalizado -->
     <div class="modal fade" id="customModal" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="customModalLabel">Mensagem</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body">
-            <img src="assets/asset-2.png" alt="Ícone" class="mb-3" style="max-width: 100px;">
-            <p id="customModalMessage"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customModalLabel">Mensagem</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="assets/asset-2.png" alt="Ícone" class="mb-3" style="max-width: 100px;">
+                    <p id="customModalMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-
-    <footer class="text-center">
-        <a href="https://www.instagram.com/naty_kittystore/" target="_blank"><img src="assets/logo-instagram.png" alt="Instagram" class="social-icon" onerror="this.src='https://via.placeholder.com/30x30?text=IG'"></a>
-        <a href="https://discord.com/invite/N3Xa23Qnmc" target="_blank"><img src="assets/logo-discord.png" alt="Discord" class="social-icon" onerror="this.src='https://via.placeholder.com/30x30?text=DC'"></a>
-        <a href="https://www.youtube.com/@naty_kittystore" target="_blank"><img src="assets/logo-youtube.png" alt="YouTube" class="social-icon" onerror="this.src='https://via.placeholder.com/30x30?text=YT'"></a>
-        <a href="https://www.tiktok.com/@naty_kittystore" target="_blank"><img src="assets/logo-tiktok.png" alt="TikTok" class="social-icon" onerror="this.src='https://via.placeholder.com/30x30?text=TT'"></a>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -238,7 +289,6 @@
         const orcamento = document.getElementById('orcamento');
         const totalSpan = document.getElementById('total');
         const copyOrcamentoBtn = document.getElementById('copyOrcamento');
-        const darkModeToggle = document.getElementById('darkModeToggle');
         const minPriceInput = document.getElementById('minPrice');
         const maxPriceInput = document.getElementById('maxPrice');
         const openFilterBtn = document.getElementById('openFilterBtn');
@@ -402,6 +452,21 @@
             window.open(url, '_blank');
         }
 
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        function setDarkMode(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('light-mode', !isDark);
+            localStorage.setItem('darkMode', isDark);
+            document.getElementById('darkModeToggle').querySelector('span').textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
+        }
+
         searchInput.addEventListener('input', searchProducts);
 
         copyOrcamentoBtn.addEventListener('click', () => {
@@ -414,20 +479,16 @@
             });
         });
 
-        function setDarkMode(isDark) {
-            document.body.classList.toggle('dark-mode', isDark);
-            document.body.classList.toggle('light-mode', !isDark);
-            localStorage.setItem('darkMode', isDark);
-        }
-
-        darkModeToggle.addEventListener('change', (e) => setDarkMode(!e.target.checked));
+        document.getElementById('darkModeToggle').addEventListener('click', (e) => {
+            e.preventDefault();
+            const isDark = document.body.classList.contains('dark-mode');
+            setDarkMode(!isDark);
+        });
 
         // Carregar preferência de modo escuro
         const savedDarkMode = localStorage.getItem('darkMode');
         if (savedDarkMode !== null) {
-            const isDark = savedDarkMode === 'true';
-            darkModeToggle.checked = !isDark;
-            setDarkMode(isDark);
+            setDarkMode(savedDarkMode === 'true');
         } else {
             setDarkMode(true);
         }
