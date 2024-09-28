@@ -19,8 +19,8 @@
     <link rel="canonical" href="https://natykitty.store/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap"></noscript>
     <style>
         :root {
             --primary-color: #ff69b4;
@@ -491,7 +491,7 @@
 <p>&copy; 2024 - feito por <a href="https://www.instagram.com/hsf_carlos" target="_blank" style="color: inherit; text-decoration: none;">Carlos</a> com ❤️ para <a href="https://www.instagram.com/naty_kittystore/" target="_blank" style="color: inherit; text-decoration: none;">Naty</a></p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" async></script>
     <script>
 const produtos = [
     { id: 114, nome: "Starry Sky", preco: 0.80, imagem: "marretas-img/Starry Sky.png", emEstoque: false },
@@ -614,7 +614,6 @@ const produtos = [
     { id: 89, nome: "Spooky Brew", preco: 37.99, imagem: "marretas-img/Spooky Brew.webp", emEstoque: true },
     { id: 90, nome: "Party Ballons", preco: 40.00, imagem: "marretas-img/Party Ballons.webp", emEstoque: false }
 ];
-
         let orcamentoItems = [];
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
@@ -746,8 +745,12 @@ const produtos = [
                 cartContent.appendChild(buttonGroup);
 
                 document.querySelectorAll('.remove-item').forEach(button => {
-                    button.addEventListener('click', (e) => removeFromOrcamento(e.target.closest('.remove-item').dataset.id));
+                       button.addEventListener('click', (e) => {
+                    requestAnimationFrame(() => {
+                        removeFromOrcamento(e.target.closest('.remove-item').dataset.id);
+                    });
                 });
+            });
 
                 document.getElementById('copyOrcamento').addEventListener('click', copyOrcamento);
             }
